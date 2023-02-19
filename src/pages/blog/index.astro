@@ -1,0 +1,67 @@
+---
+import BaseHead from "../../components/BaseHead.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import { getCollection } from "astro:content";
+import FormattedDate from "../../components/FormattedDate.astro";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      .header-href {
+        display: block;
+      }
+
+      article {
+        margin-bottom: 30px;
+        padding: 30px 50px 16px;
+      }
+
+      article {
+        background-color: #fff;
+        box-shadow: 0 0 0 0, 0 6px 12px rgb(36 41 47 / 10%);
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        margin-bottom: 20px;
+        padding: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main class="bc">
+      {
+        posts.map((post) => (
+          <a
+            href={`/blog/${post.slug}/`}
+            rel="bookmark"
+            title={post.data.title}
+            itemprop="url"
+          >
+            <article class="p-10 mb-3">
+              <tatle class="text-2xl font-bold">{post.data.title}</tatle>
+              <div class="pt-4">
+                <FormattedDate date={post.data.pubDate} />
+                {post.data.description}
+              </div>
+            </article>
+          </a>
+        ))
+      }
+      <!-- <div class="btn-group grid grid-cols-2">
+        <button class="btn btn-outline">Previous page</button>
+        <button class="btn btn-outline">Next</button>
+      </div> -->
+    </main>
+    <Footer />
+  </body>
+</html>

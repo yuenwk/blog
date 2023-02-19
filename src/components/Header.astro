@@ -1,0 +1,41 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+// import { SITE_TITLE } from "../consts";
+---
+
+<header class="tabs justify-center">
+  <a class="tab text-lg font-bold" href="/">Home</a>
+  <a class="tab text-lg font-bold" href="/blog">Blog</a>
+  <a class="tab text-lg font-bold" href="/about">About</a>
+  <style>
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .tab {
+      position: relative;
+      display: inline-flex;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 2rem;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      line-height: 2;
+      --tab-padding: 1rem;
+      --tw-text-opacity: 0.5;
+      --tab-color: hsla(var(--bc) / var(--tw-text-opacity, 1));
+      --tab-bg: hsla(var(--b1) / var(--tw-bg-opacity, 1));
+      --tab-border-color: hsla(var(--b3) / var(--tw-bg-opacity, 1));
+      color: var(--tab-color);
+      padding-left: var(--tab-padding, 1rem);
+      padding-right: var(--tab-padding, 1rem);
+    }
+  </style>
+</header>
